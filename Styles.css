@@ -5,7 +5,10 @@
     box-sizing: border-box;
 }
 body{
-  background-image: url(imagen/fondo.jpg);
+    background: 
+    url('imagen/fondo.jpg') center/cover no-repeat fixed,
+    #f5f5f5; /* Fallback color */
+  min-height: 100vh;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover ;
@@ -491,6 +494,13 @@ footer p {
 
 
 @media (max-width: 768px) {
+     body {
+    background: 
+      url('imagen/FondoMovil.jpeg') center top/cover no-repeat,
+      #f5f5f5;
+    background-attachment: scroll; /* Mejor rendimiento en móviles */
+  }
+
   .navbar {
     flex-wrap: wrap; /* Permite que los elementos se ajusten */
     padding: 0.5rem; /* Reduce el padding */
@@ -542,6 +552,12 @@ footer p {
     padding: 0.5rem;
     order: 0; /* Posición intermedia */
   }
+    body{
+    background-color: #A68A64;
+    background-size: cover;
+    background-position: center top;
+  }
+
 }
 
 @media (max-width: 480px) {
@@ -572,7 +588,16 @@ footer p {
     padding: 0.6rem;
     font-size: 0.9rem;
   }
+  body{
+    background-color: #A68A64;
+    background-size: cover;
+    background-position: center top;
+  }
 }
 
 h3{
 text-align: center;} 
+
+
+
+
