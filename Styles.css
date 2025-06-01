@@ -520,12 +520,10 @@ footer p {
 
 
 @media (max-width: 768px) {
-     body {
+  body {
     background: 
-      url('imagen/FondoMovil.jpeg') center top/cover no-repeat,
-      #f5f5f5;
-background-attachment: local; 
-    background-size: 100% auto; 
+      url('imagen/FondoMovil.jpeg') center/auto repeat-y,;
+    background-attachment: scroll;
   }
 
   .navbar {
@@ -588,10 +586,10 @@ background-attachment: local;
 }
 
 @media (max-width: 480px) {
-	body {
-		background:url('imagen/FondoMovil.jpeg') center top/cover no-repeat,#f5f5f5;
-		background-attachment: local; 
-    		background-size: 100% auto; 
+  body {
+    background: 
+      url('imagen/FondoMovil.jpeg') center/auto repeat-y,;
+    background-attachment: scroll;
   }
   header {
     height: auto;
