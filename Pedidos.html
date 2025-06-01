@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Bobamboo</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+    <!-- Sección encabezado -->
+    <header class="header">
+    <a href="Index.html" class="logo">
+        <img src="imagen/boba-Photoroom.jpg" alt="Bobamboo Logo">
+    </a>
+    
+    <a href="Index.html"> <h1 class="inicio">BOBAMBOO</h1></a>
+    
+    <nav class="navbar">
+        <span class="icon" onclick="toggleMenu()">&#9776;</span>
+        <ul class="menu" id="menu">
+        <li><a href="Index.html">INICIO</a></li>
+        <li><a href="productos.html">Catálogo</a></li>
+        <li><a href="Pedidos.html">Pedidos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    </header>
+    <main>
+        <h1 class="claro">Haz tu Pedido</h1>
+
+        <div class="formulario">
+            <label class="rosa">Tipo de bebida:</label>
+            <select id="tipo" onchange="actualizarOpciones()">
+                <option value="Boba Tea">Boba Tea</option>
+                <option value="Fruit Tea">Fruit Tea</option>
+            </select>
+
+            <label class="rosa">Sabor:</label>
+            <select id="sabor"></select>
+
+            <label class="rosa">Forma:</label>
+            <select id="forma">
+                <option value="Líquido">Líquido</option>
+                <option value="Frappeado">Frappeado</option>
+                <option value="Caliente">Caliente</option>
+                <option value="Soda">Soda</option>
+            </select>
+
+            <label class="rosa">Tipo de boba:</label>
+            <select id="boba">
+                <option value="Boba negra">Boba negra</option>
+                <option value="Extra Boba negra">Extra boba negra</option>
+                <option value="Boba explosiva">Boba explosiva</option>
+                <option value="Extra Boba explosiva">Extra boba explosiva</option>
+                <option value="Boba Jelly">Jelly</option>
+                <option value="Extra Boba Jelly">Extra boba jelly</option>
+            </select>
+
+            <label class="rosa">Base líquida:</label>
+            <select id="base">
+                <option value="Leche entera">Leche entera</option>
+                <option value="Leche deslactosada">Leche deslactosada</option>
+                <option value="Leche de almendra">Leche de almendra</option>
+            </select>
+
+            <label class="rosa">¿Para quién es?:</label>
+            <input type="text" id="nombre" placeholder="Nombre">
+
+            <button onclick="agregarBebida()">Agregar Bebida</button>
+            <button onclick="generarImagen()">Generar Imagen del Pedido</button>
+        </div>
+
+        <div class="pedido" id="pedido"></div>
+        <div class="total" id="total"></div>
+            <div class="total" id="total"></div>
+
+    <div class="contact-buttons">
+        <button class="contact-btn" onclick="contactarWhatsApp(1)">Contactar por WhatsApp 1</button>
+        <button class="contact-btn" onclick="contactarWhatsApp(2)">Contactar por WhatsApp 2</button>
+    </div>
+
+    <div class="confirmation-message" id="confirmationMessage">
+        Por favor espera la confirmación de tu pedido. Si no recibes respuesta en 5 minutos, 
+        puedes contactar al otro número.
+    </div>
+    </main>
+        <footer>
+        <p>&copy; 2025 BOBAMBOO. Todos los derechos reservados.</p>
+        <div class="redes-sociales">
+            <a href="https://www.facebook.com/share/1DKApQthh9/" target="_blank">Facebook</a> |
+            <a href="https://www.instagram.com/bobamboo.cn?igsh=dHN1cGZxd21tdTk2" target="_blank">Instagram</a> <br>
+            <a href="https://maps.app.goo.gl/ije5W3obW2ogrSJL9" target="_blank">Esquina Puebla y Jimenez, Canatlán,Dgo.</a>
+        </div>
+        <p>Contacto: 618 119 2762</p>
+        
+    </footer>
+    <script>
+        const bebidas = [];
+        const precios = {
+            "Boba Tea": 55,
+            "Fruit Tea": 55,
+            "Boba explosiva": 5,
+            "Boba Jelly": 5,
+            "Boba negra": 0,
+            "Extra Boba negra": 5,
+            "Extra Boba explosiva": 5,
+            "Extra Boba Jelly": 5,
+            "Leche de almendra": 5,
+            "Leche deslactosada": 5,
+            "Leche entera": 0
+        };
+        
+        const sabores = {
+            "Boba Tea": ["Algodón de azúcar", "Bubble gum", "Capuccino", "Cereza", "Chocolate", "Cookies and cream", "Chocobanana", "Chocolate blanco", "Coco", "Matcha", "Mazapán", "Mocha", "Mora azul", "Pelón pelo rico", "Red velvet", "Taro", "Té chai", "Vainilla"],
+            "Fruit Tea": ["Frambuesa", "Fresa", "Fruta de la pasión", "Granada", "Kiwi", "Litchi", "Mango", "Manzana verde"],
+        };
+
+        function actualizarOpciones() {
+            const tipo = document.getElementById("tipo").value;
+            const saborSelect = document.getElementById("sabor");
+            const forma = document.getElementById("forma");
+            const boba = document.getElementById("boba");
+            const base = document.getElementById("base");
+
+            forma.innerHTML = "";
+            if (tipo === "Boba Tea") {
+                forma.innerHTML += "<option value='Líquido'>Líquido</option>";
+                forma.innerHTML += "<option value='Frappeado'>Frappeado</option>";
+                forma.innerHTML += "<option value='Caliente'>Caliente</option>";
+                boba.disabled = false;
+                base.disabled = false;
+            } else {
+                forma.innerHTML += "<option value='Líquido'>Líquido</option>";
+                forma.innerHTML += "<option value='Frappeado'>Frappeado</option>";
+                forma.innerHTML += "<option value='Soda'>Soda</option>";
+                base.disabled = true;
+            }
+
+            saborSelect.innerHTML = "";
+            sabores[tipo].forEach(s => {
+                const option = document.createElement("option");
+                option.value = s;
+                option.textContent = s;
+                saborSelect.appendChild(option);
+            });
+        }
+
+        function agregarBebida() {
+            const tipo = document.getElementById("tipo").value;
+            const sabor = document.getElementById("sabor").value;
+            const forma = document.getElementById("forma").value;
+            const boba = document.getElementById("boba").value;
+            const base = document.getElementById("base").value;
+            const nombre = document.getElementById("nombre").value;
+
+            if (tipo === "Fruit Tea" && forma === "Caliente") {
+                alert("Los Fruit Tea no pueden ser calientes.");
+                return;
+            }
+            if (tipo === "Boba Tea" && forma === "Caliente" && !(boba.includes("Boba negra"))) {
+                alert("Los Boba Tea calientes solo pueden tener boba negra.");
+                return;
+            }
+
+            let precio = precios[tipo];
+            if (tipo === "Boba Tea") {
+                precio += precios[boba] + precios[base];
+            } else {
+                precio += precios[boba];
+            }
+
+            const texto = `${nombre} pidió un ${tipo} de sabor ${sabor}, en forma ${forma}, con ${boba}${tipo === "Boba Tea" ? " y base de " + base : ""}. Precio: $${precio}`;
+
+            bebidas.push({ texto, precio });
+
+            const div = document.createElement("div");
+            div.className = "bebida";
+            const index = bebidas.length - 1;
+            div.innerHTML = `
+                ${texto}
+                <button onclick="eliminarBebida(${index})" style="margin-left:10px;background:#c44;color:#fff;">
+                    Eliminar
+                </button>`;
+            document.getElementById("pedido").appendChild(div);
+
+            actualizarTotal();
+        }
+
+        function eliminarBebida(index) {
+            bebidas.splice(index, 1);
+            document.getElementById("pedido").innerHTML = "";
+            bebidas.forEach((b, i) => {
+                const div = document.createElement("div");
+                div.className = "bebida";
+                div.innerHTML = `
+                    ${b.texto}
+                    <button onclick="eliminarBebida(${i})" style="margin-left:10px;background:#c44;color:#fff;">
+                        Eliminar
+                    </button>`;
+                document.getElementById("pedido").appendChild(div);
+            });
+            actualizarTotal();
+        }
+
+        function actualizarTotal() {
+            const total = bebidas.reduce((sum, b) => sum + b.precio, 0);
+            document.getElementById("total").innerText = `Total: $${total}`;
+        }
+
+              function generarImagen() {
+            if (bebidas.length === 0) {
+                alert("Agrega al menos una bebida a tu pedido.");
+                return;
+            }
+
+          
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            const maxWidth = 800;
+            const lineHeight = 30;
+            const margin = 30;
+            const fontSize = 16;
+            const titleFontSize = 20;
+            
+            // Calcular altura necesaria
+            let totalLines = 2; // Título y espacio
+            ctx.font = `${fontSize}px sans-serif`;
+            
+            bebidas.forEach(b => {
+                const lines = dividirTexto(ctx, b.texto, maxWidth - 2 * margin);
+                totalLines += lines.length + 1; // +1 por espacio entre bebidas
+            });
+            
+            totalLines += 2; // Total y espacio final
+            
+            canvas.width = maxWidth;
+            canvas.height = margin + (totalLines * lineHeight) + margin;
+
+            // Fondo
+            ctx.fillStyle = "#fffce7";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Título
+            ctx.fillStyle = "#000";
+            ctx.font = `bold ${titleFontSize}px sans-serif`;
+            ctx.fillText("Pedido Bobamboo", margin, margin + titleFontSize);
+            
+            let y = margin + titleFontSize + lineHeight;
+            
+            // Lista de bebidas
+            ctx.font = `${fontSize}px sans-serif`;
+            bebidas.forEach(b => {
+                const lines = dividirTexto(ctx, b.texto, maxWidth - 2 * margin);
+                lines.forEach(line => {
+                    ctx.fillText(line, margin, y);
+                    y += lineHeight;
+                });
+                y += lineHeight * 0.5; // Espacio entre bebidas
+            });
+
+            // Total
+            ctx.font = `bold ${fontSize}px sans-serif`;
+            ctx.fillText(`Total: $${bebidas.reduce((sum, b) => sum + b.precio, 0)}`, margin, y + lineHeight);
+
+            // Descargar imagen
+            const link = document.createElement("a");
+            link.download = "pedido_bobamboo.png";
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        function dividirTexto(ctx, text, maxWidth) {
+            const words = text.split(" ");
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                const word = words[i];
+                const width = ctx.measureText(currentLine + " " + word).width;
+                if (width < maxWidth) {
+                    currentLine += " " + word;
+                } else {
+                    lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+        actualizarOpciones();
+
+        function contactarWhatsApp(numero) {
+    if (bebidas.length === 0) {
+        alert("Primero agrega al menos una bebida a tu pedido.");
+        return;
+    }
+
+    // Números de teléfono 
+    const telefonos = {
+        1: "526771079795",  
+        2: "529876543210" 
+    };
+
+    // Crear mensaje del pedido
+    let mensaje = "¡Hola Bobamboo! Quiero hacer este pedido:\n\n";
+    bebidas.forEach(b => {
+        mensaje += `➡ ${b.texto}\n`;
+    });
+    mensaje += `\n💰 *Total: $${bebidas.reduce((sum, b) => sum + b.precio, 0)}*`;
+    mensaje += "\n\n¿Está disponible? ¡Gracias!";
+
+    // Codificar para URL (elimina espacios y caracteres especiales)
+    const mensajeCodificado = encodeURIComponent(mensaje);
+
+    // Detectar si es móvil o desktop
+    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Generar el link adecuado
+    const url = isMobile 
+        ? `https://wa.me/${telefonos[numero]}?text=${mensajeCodificado}`
+        : `https://web.whatsapp.com/send?phone=${telefonos[numero]}&text=${mensajeCodificado}`;
+
+    // Abrir en una nueva pestaña
+    window.open(url, '_blank');
+}
+    // Función para mostrar u ocultar el menú en móviles
+
+        function toggleMenu() {
+        const menu = document.getElementById("menu");
+        menu.classList.toggle("responsive");
+        
+        // Ajuste para cerrar el menú al hacer clic en un enlace
+        const menuItems = menu.querySelectorAll("a");
+        menuItems.forEach(item => {
+            item.addEventListener("click", () => {
+            if (window.innerWidth <= 768) {
+                menu.classList.remove("responsive");
+            }
+            });
+        });
+        
+        // Evita el desplazamiento de la página cuando el menú está abierto
+        document.body.style.overflow = menu.classList.contains("responsive") ? "hidden" : "auto";
+}
+    </script>
+</body>
+</html>
