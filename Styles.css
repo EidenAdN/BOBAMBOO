@@ -302,7 +302,7 @@ main h5{
 }
 
 /* Información de contacto*/
-.info-contacto {
+/* .info-contacto {
   flex: 1;
   min-width: 300px;
 
@@ -310,7 +310,7 @@ main h5{
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(90, 55, 55, 0.1);
   text-align: center;
-}
+} */
 .info-contacto h2 {
   /* color: #9fd39a; */
   margin-bottom: 10px;
@@ -320,14 +320,40 @@ main h5{
   /* color: #555; */
 }
 .mapa {
-    margin-top: 15px;
+    margin: 15px;
     border: 0;
     width: 100%;
     height: 300px;
     border-radius: 8px;
   }
+.mapa-responsive {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 1.5rem 0;
+}
 
+.mapa-responsive iframe {
+  width: 90%;
+  height: 400px; /* Altura para desktop */
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
 
+@media (max-width: 768px) {
+  .mapa-responsive iframe {
+    height: 300px; /* Altura para tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .mapa-responsive iframe {
+    height: 250px; /* Altura para móviles */
+    border-radius: 8px;
+  }
+}
+/* Estilos del pedido */
 .formulario, .pedido {
   background-color: #fff;
   padding: 15px;
@@ -335,7 +361,7 @@ main h5{
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   margin-bottom: 20px;
 }
-/* Estilos del pedido */
+
 .pedido .bebida {
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
@@ -561,12 +587,6 @@ footer p {
 }
 
 @media (max-width: 480px) {
-	body {
-	 background: 
-      url('imagen/FondoMovil.jpeg') center top/cover no-repeat,
-      #f5f5f5;
-    background-attachment: scroll; /* Mejor rendimiento en móviles */
-  }
   header {
     height: auto;
     padding: 0.5rem;
@@ -603,7 +623,3 @@ footer p {
 
 h3{
 text-align: center;} 
-
-
-
-
