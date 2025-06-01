@@ -522,8 +522,7 @@ footer p {
 @media (max-width: 768px) {
   body {
     background: 
-      url('imagen/FondoMovil.jpeg') center/auto repeat-y,;
-    background-attachment: scroll;
+      url('imagen/FondoMovil.jpeg');
   }
 
   .navbar {
@@ -577,19 +576,18 @@ footer p {
     padding: 0.5rem;
     order: 0; /* Posición intermedia */
   }
-    body{
+   /* body{
     background-color: #A68A64;
     background-size: cover;
     background-position: center top;
-  }
+  }*/
 
 }
 
 @media (max-width: 480px) {
   body {
     background: 
-      url('imagen/FondoMovil.jpeg') center/auto repeat-y,;
-    background-attachment: scroll;
+      url('imagen/FondoMovil.jpeg');
   }
   header {
     height: auto;
