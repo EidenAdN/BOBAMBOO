@@ -324,23 +324,6 @@ main h5{
     border-radius: 8px;
   }
 
-/* Estilos del pie de página */
-footer {
-    background-color: #5c8c41;
-    color: pink;
-    height: 115px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 10px;
-    backdrop-filter: blur;
-}
-footer p {
-  margin: 5px 0;
-  color: whitesmoke;
-}
 
 .formulario, .pedido {
   background-color: #fff;
@@ -407,16 +390,103 @@ button {
   display: none;
 }
 
-/* Estilos para los enlaces de redes sociales */
+
+/* Estilos para pie de pagina y los enlaces de redes sociales */
+footer {
+  background-color: #5c8c41;
+  color: whitesmoke;
+  padding: 1.2rem 0.8rem;;
+  text-align: center;
+  margin-top: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 150px; /* Altura mínima garantizada */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content {
+  max-width: 100%;
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* Estilos para los elementos del footer */
+footer p {
+  margin: 5px 0;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.redes-sociales {
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .redes-sociales a {
   color: whitesmoke;
-  margin: 0 10px;
   text-decoration: none;
-  font-size: 18px;
-  
+  transition: color 0.3s ease;
+  white-space: nowrap; /*Evita que el texto se divida */
+  padding: 0.3rem 0.6rem;
+
+ 
 }
+
 .redes-sociales a:hover {
-  color: #1da1f2;         /* Color para efecto hover */
+  color: #FF85A2;
+
+}
+
+/* Media Queries para móviles */
+@media (max-width: 768px) {
+  footer {
+    padding: 1.5rem 0.5rem;
+    min-height: auto;
+  }
+  
+  .footer-content {
+    padding: 0 10px;
+  }
+  
+  footer p {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+  }
+  
+  .redes-sociales {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .redes-sociales a {
+    width: 90%;
+    text-align: center;
+    padding: 0.5rem;
+    white-space: normal; /* Permite múltiples líneas si es necesario */
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 1rem 0.3rem;
+  }
+  
+  footer p {
+    font-size: 0.8rem;
+  }
+  
+  .redes-sociales a {
+    font-size: 0.9rem;
+    width: 95%;
+  }
 }
 
 
@@ -485,7 +555,7 @@ button {
   }
   
   .inicio {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -506,6 +576,3 @@ button {
 
 h3{
 text-align: center;} 
-
-
-
